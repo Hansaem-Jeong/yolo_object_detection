@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+      
+    <node if="true" pkg="yolo_object_detection" type="yolo_object_detection_node" name="yolo_object_detection_node" output="screen" clear_params="true" required="true">
+        <remap from="/image_color" to="/camera/color/image_raw"/>
+            
+        <param name="yolo_names_file" value="$(find yolo_object_detection)/conf/coco.names"/>
+        <param name="yolo_config_file" value="$(find yolo_object_detection)/conf/yolov4-tiny.cfg"/>
+        <param name="yolo_weights_file" value="$(find yolo_object_detection)/conf/yolov4-tiny.weights"/>
+    </node>
+      
+</launch>
