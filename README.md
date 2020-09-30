@@ -25,5 +25,5 @@ Set the correct camera topic name in the launch file `yolo_object_detection.laun
 
 ```
 $ roslaunch yolo_object_detection yolo_object_detection.launch
-``̀
+```
 
