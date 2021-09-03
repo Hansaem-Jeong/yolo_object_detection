@@ -2,6 +2,8 @@
 #include <iostream>
 #include <opencv2/imgproc.hpp>
 
+#include <time.h>
+
 
 
 namespace yolo_object_detection
@@ -41,6 +43,8 @@ YoloObjectDetectionNode::~YoloObjectDetectionNode()
 
 void YoloObjectDetectionNode::imageCallback(const sensor_msgs::ImageConstPtr& im_msg)
 {
+    clock_t start_aes, end_aes;
+    start_aes = clock();
     cv_bridge::CvImageConstPtr cv_ptr_im = cv_bridge::toCvShare(im_msg);
 
     cv::Mat color = cv_ptr_im->image.clone();
@@ -56,6 +60,8 @@ void YoloObjectDetectionNode::imageCallback(const sensor_msgs::ImageConstPtr& im
     cv::imshow("detection", detection);
 
     cv::waitKey(1);
+    end_aes = clock();
+    printf("Cycle time : %lf\n", (double)(end_aes-start_aes)/CLOCKS_PER_SEC);
 }
 
 void YoloObjectDetectionNode::run()

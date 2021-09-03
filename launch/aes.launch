@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<launch>
+      
+    <node if="true" pkg="yolo_object_detection" type="yolo_object_detection_node" name="yolo_object_detection_node" output="screen" clear_params="true" required="true">
+        <!--remap from="/image_color" to="/camera/color/image_raw"/-->
+        <!--remap from="/image_color" to="/realsense_rgb/image_raw"/-->
+        <remap from="/image_color" to="/usb_cam/image_raw"/>
+            
+        <!--param name="yolo_names_file" value="$(find yolo_object_detection)/conf/coco.names"/-->
+        <param name="yolo_names_file" value="$(find yolo_object_detection)/conf/bdd100k.names"/>
+        <!--param name="yolo_config_file" value="$(find yolo_object_detection)/conf/yolov4-tiny.cfg"/-->
+        <param name="yolo_config_file" value="$(find yolo_object_detection)/conf/yolov4-tiny-bdd100k.cfg"/>
+        <!--param name="yolo_weights_file" value="$(find yolo_object_detection)/conf/yolov4-tiny.weights"/-->
+        <param name="yolo_weights_file" value="$(find yolo_object_detection)/conf/yolov4-tiny-bdd100k_best.weights"/>
+    </node>
+      
+</launch>
